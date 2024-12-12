@@ -12,19 +12,17 @@ def hello_world():
 
 @app.route("/api/process_parquet")
 def process():
-    filename = 'prasarana_timeseries.parquet'
+    filename = '/tmp/prasarana_timeseries.parquet'
 
     if not os.path.exists(filename):
         print(f"{filename} not found. Fetching...")
         url = "https://storage.data.gov.my/dashboards/prasarana_timeseries.parquet"
-        urllib.request.urlretrieve(url, 'prasarana_timeseries.parquet')
+        urllib.request.urlretrieve(url, filename)
     else:
         print(f"{filename} exists.")
 
-    # data = pq.read_table(filename)
-    # df = data.to_pandas() 
 
-    df = pd.read_parquet('prasarana_timeseries.parquet', engine='fastparquet')
+    df = pd.read_parquet(filename, engine='fastparquet')
 
     grouped_df = df.groupby('date', as_index=False)['passengers'].sum()
 
