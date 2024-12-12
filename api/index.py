@@ -1,5 +1,6 @@
 import os
-import pyarrow.parquet as pq
+import pandas as pd
+# import pyarrow.parquet as pq
 import urllib
 
 from flask import Flask, jsonify
@@ -20,8 +21,10 @@ def process():
     else:
         print(f"{filename} exists.")
 
-    data = pq.read_table(filename)
-    df = data.to_pandas() 
+    # data = pq.read_table(filename)
+    # df = data.to_pandas() 
+
+    df = pd.read_parquet('prasarana_timeseries.parquet', engine='fastparquet')
 
     grouped_df = df.groupby('date', as_index=False)['passengers'].sum()
 
