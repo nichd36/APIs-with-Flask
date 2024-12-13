@@ -7,5 +7,5 @@ This webapp combines Next.js as the frontend and Flask as the backend. This was 
 This repo is a part of my ongoing project, which delves in data processing and visualization.
 
 ## Key Points
-- Obtain and read parquet files
-- Process and provide processed data via APIs
+- **Obtain and read parquet files**
+- **Process and provide processed data via APIs**: "/api/process_parquet" will return a preview of the dataset.
